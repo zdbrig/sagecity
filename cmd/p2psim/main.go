@@ -29,12 +29,12 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/simulations"
-	"github.com/ethereum/go-ethereum/p2p/simulations/adapters"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/zdbrig/sagecity/crypto"
+	"github.com/zdbrig/sagecity/p2p"
+	"github.com/zdbrig/sagecity/p2p/discover"
+	"github.com/zdbrig/sagecity/p2p/simulations"
+	"github.com/zdbrig/sagecity/p2p/simulations/adapters"
+	"github.com/zdbrig/sagecity/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 

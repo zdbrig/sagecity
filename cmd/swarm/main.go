@@ -1,18 +1,18 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2016 The sagecity Authors
+// This file is part of sagecity.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// sagecity is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// sagecity is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with sagecity. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -31,23 +31,23 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/contracts/ens"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ethereum/go-ethereum/internal/debug"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/go-ethereum/swarm"
-	bzzapi "github.com/ethereum/go-ethereum/swarm/api"
+	"github.com/zdbrig/sagecity/accounts"
+	"github.com/zdbrig/sagecity/accounts/keystore"
+	"github.com/zdbrig/sagecity/cmd/utils"
+	"github.com/zdbrig/sagecity/common"
+	"github.com/zdbrig/sagecity/console"
+	"github.com/zdbrig/sagecity/contracts/ens"
+	"github.com/zdbrig/sagecity/crypto"
+	"github.com/zdbrig/sagecity/ethclient"
+	"github.com/zdbrig/sagecity/internal/debug"
+	"github.com/zdbrig/sagecity/log"
+	"github.com/zdbrig/sagecity/node"
+	"github.com/zdbrig/sagecity/p2p"
+	"github.com/zdbrig/sagecity/p2p/discover"
+	"github.com/zdbrig/sagecity/params"
+	"github.com/zdbrig/sagecity/rpc"
+	"github.com/zdbrig/sagecity/swarm"
+	bzzapi "github.com/zdbrig/sagecity/swarm/api"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -95,7 +95,7 @@ var (
 	}
 	SwarmSwapAPIFlag = cli.StringFlag{
 		Name:  "swap-api",
-		Usage: "URL of the Ethereum API provider to use to settle SWAP payments",
+		Usage: "URL of the Sagecity API provider to use to settle SWAP payments",
 	}
 	SwarmSyncEnabledFlag = cli.BoolTFlag{
 		Name:  "sync",
@@ -103,7 +103,7 @@ var (
 	}
 	EnsAPIFlag = cli.StringFlag{
 		Name:  "ens-api",
-		Usage: "URL of the Ethereum API provider to use for ENS record lookups",
+		Usage: "URL of the Sagecity API provider to use for ENS record lookups",
 		Value: node.DefaultIPCEndpoint("geth"),
 	}
 	EnsAddrFlag = cli.StringFlag{
@@ -159,13 +159,13 @@ func init() {
 	utils.ListenPortFlag.Value = 30399
 }
 
-var app = utils.NewApp(gitCommit, "Ethereum Swarm")
+var app = utils.NewApp(gitCommit, "Sagecity Swarm")
 
 // This init function creates the cli.App.
 func init() {
 	app.Action = bzzd
 	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2013-2016 The go-ethereum Authors"
+	app.Copyright = "Copyright 2013-2016 The sagecity Authors"
 	app.Commands = []cli.Command{
 		{
 			Action:    version,
@@ -256,12 +256,12 @@ Manage the local chunk database.
 					Description: `
 Export a local chunk database as a tar archive (use - to send to stdout).
 
-    swarm db export ~/.ethereum/swarm/bzz-KEY/chunks chunks.tar
+    swarm db export ~/.sagecity/swarm/bzz-KEY/chunks chunks.tar
 
 The export may be quite large, consider piping the output through the Unix
 pv(1) tool to get a progress bar:
 
-    swarm db export ~/.ethereum/swarm/bzz-KEY/chunks - | pv > chunks.tar
+    swarm db export ~/.sagecity/swarm/bzz-KEY/chunks - | pv > chunks.tar
 `,
 				},
 				{
@@ -272,12 +272,12 @@ pv(1) tool to get a progress bar:
 					Description: `
 Import chunks from a tar archive into a local chunk database (use - to read from stdin).
 
-    swarm db import ~/.ethereum/swarm/bzz-KEY/chunks chunks.tar
+    swarm db import ~/.sagecity/swarm/bzz-KEY/chunks chunks.tar
 
 The import may be quite large, consider piping the input through the Unix
 pv(1) tool to get a progress bar:
 
-    pv chunks.tar | swarm db import ~/.ethereum/swarm/bzz-KEY/chunks -
+    pv chunks.tar | swarm db import ~/.sagecity/swarm/bzz-KEY/chunks -
 `,
 				},
 				{

@@ -1,18 +1,18 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2016 The sagecity Authors
+// This file is part of the sagecity library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The sagecity library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The sagecity library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the sagecity library. If not, see <http://www.gnu.org/licenses/>.
 
 package discv5
 
@@ -24,14 +24,14 @@ import (
 	"net"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/mclock"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/crypto/sha3"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p/nat"
-	"github.com/ethereum/go-ethereum/p2p/netutil"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/zdbrig/sagecity/common"
+	"github.com/zdbrig/sagecity/common/mclock"
+	"github.com/zdbrig/sagecity/crypto"
+	"github.com/zdbrig/sagecity/crypto/sha3"
+	"github.com/zdbrig/sagecity/log"
+	"github.com/zdbrig/sagecity/p2p/nat"
+	"github.com/zdbrig/sagecity/p2p/netutil"
+	"github.com/zdbrig/sagecity/rlp"
 )
 
 var (

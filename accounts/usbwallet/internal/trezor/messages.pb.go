@@ -70,17 +70,17 @@ const (
 	MessageType_MessageType_SignIdentity             MessageType = 53
 	MessageType_MessageType_SignedIdentity           MessageType = 54
 	MessageType_MessageType_GetFeatures              MessageType = 55
-	MessageType_MessageType_EthereumGetAddress       MessageType = 56
-	MessageType_MessageType_EthereumAddress          MessageType = 57
-	MessageType_MessageType_EthereumSignTx           MessageType = 58
-	MessageType_MessageType_EthereumTxRequest        MessageType = 59
-	MessageType_MessageType_EthereumTxAck            MessageType = 60
+	MessageType_MessageType_SagecityGetAddress       MessageType = 56
+	MessageType_MessageType_SagecityAddress          MessageType = 57
+	MessageType_MessageType_SagecitySignTx           MessageType = 58
+	MessageType_MessageType_SagecityTxRequest        MessageType = 59
+	MessageType_MessageType_SagecityTxAck            MessageType = 60
 	MessageType_MessageType_GetECDHSessionKey        MessageType = 61
 	MessageType_MessageType_ECDHSessionKey           MessageType = 62
 	MessageType_MessageType_SetU2FCounter            MessageType = 63
-	MessageType_MessageType_EthereumSignMessage      MessageType = 64
-	MessageType_MessageType_EthereumVerifyMessage    MessageType = 65
-	MessageType_MessageType_EthereumMessageSignature MessageType = 66
+	MessageType_MessageType_SagecitySignMessage      MessageType = 64
+	MessageType_MessageType_SagecityVerifyMessage    MessageType = 65
+	MessageType_MessageType_SagecityMessageSignature MessageType = 66
 	MessageType_MessageType_DebugLinkDecision        MessageType = 100
 	MessageType_MessageType_DebugLinkGetState        MessageType = 101
 	MessageType_MessageType_DebugLinkState           MessageType = 102
@@ -146,17 +146,17 @@ var MessageType_name = map[int32]string{
 	53:  "MessageType_SignIdentity",
 	54:  "MessageType_SignedIdentity",
 	55:  "MessageType_GetFeatures",
-	56:  "MessageType_EthereumGetAddress",
-	57:  "MessageType_EthereumAddress",
-	58:  "MessageType_EthereumSignTx",
-	59:  "MessageType_EthereumTxRequest",
-	60:  "MessageType_EthereumTxAck",
+	56:  "MessageType_SagecityGetAddress",
+	57:  "MessageType_SagecityAddress",
+	58:  "MessageType_SagecitySignTx",
+	59:  "MessageType_SagecityTxRequest",
+	60:  "MessageType_SagecityTxAck",
 	61:  "MessageType_GetECDHSessionKey",
 	62:  "MessageType_ECDHSessionKey",
 	63:  "MessageType_SetU2FCounter",
-	64:  "MessageType_EthereumSignMessage",
-	65:  "MessageType_EthereumVerifyMessage",
-	66:  "MessageType_EthereumMessageSignature",
+	64:  "MessageType_SagecitySignMessage",
+	65:  "MessageType_SagecityVerifyMessage",
+	66:  "MessageType_SagecityMessageSignature",
 	100: "MessageType_DebugLinkDecision",
 	101: "MessageType_DebugLinkGetState",
 	102: "MessageType_DebugLinkState",
@@ -221,17 +221,17 @@ var MessageType_value = map[string]int32{
 	"MessageType_SignIdentity":             53,
 	"MessageType_SignedIdentity":           54,
 	"MessageType_GetFeatures":              55,
-	"MessageType_EthereumGetAddress":       56,
-	"MessageType_EthereumAddress":          57,
-	"MessageType_EthereumSignTx":           58,
-	"MessageType_EthereumTxRequest":        59,
-	"MessageType_EthereumTxAck":            60,
+	"MessageType_SagecityGetAddress":       56,
+	"MessageType_SagecityAddress":          57,
+	"MessageType_SagecitySignTx":           58,
+	"MessageType_SagecityTxRequest":        59,
+	"MessageType_SagecityTxAck":            60,
 	"MessageType_GetECDHSessionKey":        61,
 	"MessageType_ECDHSessionKey":           62,
 	"MessageType_SetU2FCounter":            63,
-	"MessageType_EthereumSignMessage":      64,
-	"MessageType_EthereumVerifyMessage":    65,
-	"MessageType_EthereumMessageSignature": 66,
+	"MessageType_SagecitySignMessage":      64,
+	"MessageType_SagecityVerifyMessage":    65,
+	"MessageType_SagecityMessageSignature": 66,
 	"MessageType_DebugLinkDecision":        100,
 	"MessageType_DebugLinkGetState":        101,
 	"MessageType_DebugLinkState":           102,
@@ -954,29 +954,29 @@ func (m *GetAddress) GetScriptType() InputScriptType {
 }
 
 // *
-// Request: Ask device for Ethereum address corresponding to address_n path
+// Request: Ask device for Sagecity address corresponding to address_n path
 // @next PassphraseRequest
-// @next EthereumAddress
+// @next SagecityAddress
 // @next Failure
-type EthereumGetAddress struct {
+type SagecityGetAddress struct {
 	AddressN         []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	ShowDisplay      *bool    `protobuf:"varint,2,opt,name=show_display,json=showDisplay" json:"show_display,omitempty"`
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *EthereumGetAddress) Reset()                    { *m = EthereumGetAddress{} }
-func (m *EthereumGetAddress) String() string            { return proto.CompactTextString(m) }
-func (*EthereumGetAddress) ProtoMessage()               {}
-func (*EthereumGetAddress) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{22} }
+func (m *SagecityGetAddress) Reset()                    { *m = SagecityGetAddress{} }
+func (m *SagecityGetAddress) String() string            { return proto.CompactTextString(m) }
+func (*SagecityGetAddress) ProtoMessage()               {}
+func (*SagecityGetAddress) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{22} }
 
-func (m *EthereumGetAddress) GetAddressN() []uint32 {
+func (m *SagecityGetAddress) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *EthereumGetAddress) GetShowDisplay() bool {
+func (m *SagecityGetAddress) GetShowDisplay() bool {
 	if m != nil && m.ShowDisplay != nil {
 		return *m.ShowDisplay
 	}
@@ -1004,19 +1004,19 @@ func (m *Address) GetAddress() string {
 }
 
 // *
-// Response: Contains an Ethereum address derived from device private seed
-// @prev EthereumGetAddress
-type EthereumAddress struct {
+// Response: Contains an Sagecity address derived from device private seed
+// @prev SagecityGetAddress
+type SagecityAddress struct {
 	Address          []byte `protobuf:"bytes,1,req,name=address" json:"address,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *EthereumAddress) Reset()                    { *m = EthereumAddress{} }
-func (m *EthereumAddress) String() string            { return proto.CompactTextString(m) }
-func (*EthereumAddress) ProtoMessage()               {}
-func (*EthereumAddress) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{24} }
+func (m *SagecityAddress) Reset()                    { *m = SagecityAddress{} }
+func (m *SagecityAddress) String() string            { return proto.CompactTextString(m) }
+func (*SagecityAddress) ProtoMessage()               {}
+func (*SagecityAddress) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{24} }
 
-func (m *EthereumAddress) GetAddress() []byte {
+func (m *SagecityAddress) GetAddress() []byte {
 	if m != nil {
 		return m.Address
 	}
@@ -2006,9 +2006,9 @@ func (m *TxAck) GetTx() *TransactionType {
 // Note: the first at most 1024 bytes of data MUST be transmitted as part of this message.
 // @next PassphraseRequest
 // @next PinMatrixRequest
-// @next EthereumTxRequest
+// @next SagecityTxRequest
 // @next Failure
-type EthereumSignTx struct {
+type SagecitySignTx struct {
 	AddressN         []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	Nonce            []byte   `protobuf:"bytes,2,opt,name=nonce" json:"nonce,omitempty"`
 	GasPrice         []byte   `protobuf:"bytes,3,opt,name=gas_price,json=gasPrice" json:"gas_price,omitempty"`
@@ -2021,68 +2021,68 @@ type EthereumSignTx struct {
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *EthereumSignTx) Reset()                    { *m = EthereumSignTx{} }
-func (m *EthereumSignTx) String() string            { return proto.CompactTextString(m) }
-func (*EthereumSignTx) ProtoMessage()               {}
-func (*EthereumSignTx) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{49} }
+func (m *SagecitySignTx) Reset()                    { *m = SagecitySignTx{} }
+func (m *SagecitySignTx) String() string            { return proto.CompactTextString(m) }
+func (*SagecitySignTx) ProtoMessage()               {}
+func (*SagecitySignTx) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{49} }
 
-func (m *EthereumSignTx) GetAddressN() []uint32 {
+func (m *SagecitySignTx) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetNonce() []byte {
+func (m *SagecitySignTx) GetNonce() []byte {
 	if m != nil {
 		return m.Nonce
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetGasPrice() []byte {
+func (m *SagecitySignTx) GetGasPrice() []byte {
 	if m != nil {
 		return m.GasPrice
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetGasLimit() []byte {
+func (m *SagecitySignTx) GetGasLimit() []byte {
 	if m != nil {
 		return m.GasLimit
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetTo() []byte {
+func (m *SagecitySignTx) GetTo() []byte {
 	if m != nil {
 		return m.To
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetValue() []byte {
+func (m *SagecitySignTx) GetValue() []byte {
 	if m != nil {
 		return m.Value
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetDataInitialChunk() []byte {
+func (m *SagecitySignTx) GetDataInitialChunk() []byte {
 	if m != nil {
 		return m.DataInitialChunk
 	}
 	return nil
 }
 
-func (m *EthereumSignTx) GetDataLength() uint32 {
+func (m *SagecitySignTx) GetDataLength() uint32 {
 	if m != nil && m.DataLength != nil {
 		return *m.DataLength
 	}
 	return 0
 }
 
-func (m *EthereumSignTx) GetChainId() uint32 {
+func (m *SagecitySignTx) GetChainId() uint32 {
 	if m != nil && m.ChainId != nil {
 		return *m.ChainId
 	}
@@ -2093,9 +2093,9 @@ func (m *EthereumSignTx) GetChainId() uint32 {
 // Response: Device asks for more data from transaction payload, or returns the signature.
 // If data_length is set, device awaits that many more bytes of payload.
 // Otherwise, the signature_* fields contain the computed transaction signature. All three fields will be present.
-// @prev EthereumSignTx
-// @next EthereumTxAck
-type EthereumTxRequest struct {
+// @prev SagecitySignTx
+// @next SagecityTxAck
+type SagecityTxRequest struct {
 	DataLength       *uint32 `protobuf:"varint,1,opt,name=data_length,json=dataLength" json:"data_length,omitempty"`
 	SignatureV       *uint32 `protobuf:"varint,2,opt,name=signature_v,json=signatureV" json:"signature_v,omitempty"`
 	SignatureR       []byte  `protobuf:"bytes,3,opt,name=signature_r,json=signatureR" json:"signature_r,omitempty"`
@@ -2103,33 +2103,33 @@ type EthereumTxRequest struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *EthereumTxRequest) Reset()                    { *m = EthereumTxRequest{} }
-func (m *EthereumTxRequest) String() string            { return proto.CompactTextString(m) }
-func (*EthereumTxRequest) ProtoMessage()               {}
-func (*EthereumTxRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{50} }
+func (m *SagecityTxRequest) Reset()                    { *m = SagecityTxRequest{} }
+func (m *SagecityTxRequest) String() string            { return proto.CompactTextString(m) }
+func (*SagecityTxRequest) ProtoMessage()               {}
+func (*SagecityTxRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{50} }
 
-func (m *EthereumTxRequest) GetDataLength() uint32 {
+func (m *SagecityTxRequest) GetDataLength() uint32 {
 	if m != nil && m.DataLength != nil {
 		return *m.DataLength
 	}
 	return 0
 }
 
-func (m *EthereumTxRequest) GetSignatureV() uint32 {
+func (m *SagecityTxRequest) GetSignatureV() uint32 {
 	if m != nil && m.SignatureV != nil {
 		return *m.SignatureV
 	}
 	return 0
 }
 
-func (m *EthereumTxRequest) GetSignatureR() []byte {
+func (m *SagecityTxRequest) GetSignatureR() []byte {
 	if m != nil {
 		return m.SignatureR
 	}
 	return nil
 }
 
-func (m *EthereumTxRequest) GetSignatureS() []byte {
+func (m *SagecityTxRequest) GetSignatureS() []byte {
 	if m != nil {
 		return m.SignatureS
 	}
@@ -2138,19 +2138,19 @@ func (m *EthereumTxRequest) GetSignatureS() []byte {
 
 // *
 // Request: Transaction payload data.
-// @prev EthereumTxRequest
-// @next EthereumTxRequest
-type EthereumTxAck struct {
+// @prev SagecityTxRequest
+// @next SagecityTxRequest
+type SagecityTxAck struct {
 	DataChunk        []byte `protobuf:"bytes,1,opt,name=data_chunk,json=dataChunk" json:"data_chunk,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *EthereumTxAck) Reset()                    { *m = EthereumTxAck{} }
-func (m *EthereumTxAck) String() string            { return proto.CompactTextString(m) }
-func (*EthereumTxAck) ProtoMessage()               {}
-func (*EthereumTxAck) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{51} }
+func (m *SagecityTxAck) Reset()                    { *m = SagecityTxAck{} }
+func (m *SagecityTxAck) String() string            { return proto.CompactTextString(m) }
+func (*SagecityTxAck) ProtoMessage()               {}
+func (*SagecityTxAck) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{51} }
 
-func (m *EthereumTxAck) GetDataChunk() []byte {
+func (m *SagecityTxAck) GetDataChunk() []byte {
 	if m != nil {
 		return m.DataChunk
 	}
@@ -2159,27 +2159,27 @@ func (m *EthereumTxAck) GetDataChunk() []byte {
 
 // *
 // Request: Ask device to sign message
-// @next EthereumMessageSignature
+// @next SagecityMessageSignature
 // @next Failure
-type EthereumSignMessage struct {
+type SagecitySignMessage struct {
 	AddressN         []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	Message          []byte   `protobuf:"bytes,2,req,name=message" json:"message,omitempty"`
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *EthereumSignMessage) Reset()                    { *m = EthereumSignMessage{} }
-func (m *EthereumSignMessage) String() string            { return proto.CompactTextString(m) }
-func (*EthereumSignMessage) ProtoMessage()               {}
-func (*EthereumSignMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{52} }
+func (m *SagecitySignMessage) Reset()                    { *m = SagecitySignMessage{} }
+func (m *SagecitySignMessage) String() string            { return proto.CompactTextString(m) }
+func (*SagecitySignMessage) ProtoMessage()               {}
+func (*SagecitySignMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{52} }
 
-func (m *EthereumSignMessage) GetAddressN() []uint32 {
+func (m *SagecitySignMessage) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *EthereumSignMessage) GetMessage() []byte {
+func (m *SagecitySignMessage) GetMessage() []byte {
 	if m != nil {
 		return m.Message
 	}
@@ -2190,33 +2190,33 @@ func (m *EthereumSignMessage) GetMessage() []byte {
 // Request: Ask device to verify message
 // @next Success
 // @next Failure
-type EthereumVerifyMessage struct {
+type SagecityVerifyMessage struct {
 	Address          []byte `protobuf:"bytes,1,opt,name=address" json:"address,omitempty"`
 	Signature        []byte `protobuf:"bytes,2,opt,name=signature" json:"signature,omitempty"`
 	Message          []byte `protobuf:"bytes,3,opt,name=message" json:"message,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *EthereumVerifyMessage) Reset()                    { *m = EthereumVerifyMessage{} }
-func (m *EthereumVerifyMessage) String() string            { return proto.CompactTextString(m) }
-func (*EthereumVerifyMessage) ProtoMessage()               {}
-func (*EthereumVerifyMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{53} }
+func (m *SagecityVerifyMessage) Reset()                    { *m = SagecityVerifyMessage{} }
+func (m *SagecityVerifyMessage) String() string            { return proto.CompactTextString(m) }
+func (*SagecityVerifyMessage) ProtoMessage()               {}
+func (*SagecityVerifyMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{53} }
 
-func (m *EthereumVerifyMessage) GetAddress() []byte {
+func (m *SagecityVerifyMessage) GetAddress() []byte {
 	if m != nil {
 		return m.Address
 	}
 	return nil
 }
 
-func (m *EthereumVerifyMessage) GetSignature() []byte {
+func (m *SagecityVerifyMessage) GetSignature() []byte {
 	if m != nil {
 		return m.Signature
 	}
 	return nil
 }
 
-func (m *EthereumVerifyMessage) GetMessage() []byte {
+func (m *SagecityVerifyMessage) GetMessage() []byte {
 	if m != nil {
 		return m.Message
 	}
@@ -2225,26 +2225,26 @@ func (m *EthereumVerifyMessage) GetMessage() []byte {
 
 // *
 // Response: Signed message
-// @prev EthereumSignMessage
-type EthereumMessageSignature struct {
+// @prev SagecitySignMessage
+type SagecityMessageSignature struct {
 	Address          []byte `protobuf:"bytes,1,opt,name=address" json:"address,omitempty"`
 	Signature        []byte `protobuf:"bytes,2,opt,name=signature" json:"signature,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *EthereumMessageSignature) Reset()                    { *m = EthereumMessageSignature{} }
-func (m *EthereumMessageSignature) String() string            { return proto.CompactTextString(m) }
-func (*EthereumMessageSignature) ProtoMessage()               {}
-func (*EthereumMessageSignature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{54} }
+func (m *SagecityMessageSignature) Reset()                    { *m = SagecityMessageSignature{} }
+func (m *SagecityMessageSignature) String() string            { return proto.CompactTextString(m) }
+func (*SagecityMessageSignature) ProtoMessage()               {}
+func (*SagecityMessageSignature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{54} }
 
-func (m *EthereumMessageSignature) GetAddress() []byte {
+func (m *SagecityMessageSignature) GetAddress() []byte {
 	if m != nil {
 		return m.Address
 	}
 	return nil
 }
 
-func (m *EthereumMessageSignature) GetSignature() []byte {
+func (m *SagecityMessageSignature) GetSignature() []byte {
 	if m != nil {
 		return m.Signature
 	}
@@ -2806,9 +2806,9 @@ func init() {
 	proto.RegisterType((*GetPublicKey)(nil), "GetPublicKey")
 	proto.RegisterType((*PublicKey)(nil), "PublicKey")
 	proto.RegisterType((*GetAddress)(nil), "GetAddress")
-	proto.RegisterType((*EthereumGetAddress)(nil), "EthereumGetAddress")
+	proto.RegisterType((*SagecityGetAddress)(nil), "SagecityGetAddress")
 	proto.RegisterType((*Address)(nil), "Address")
-	proto.RegisterType((*EthereumAddress)(nil), "EthereumAddress")
+	proto.RegisterType((*SagecityAddress)(nil), "SagecityAddress")
 	proto.RegisterType((*WipeDevice)(nil), "WipeDevice")
 	proto.RegisterType((*LoadDevice)(nil), "LoadDevice")
 	proto.RegisterType((*ResetDevice)(nil), "ResetDevice")
@@ -2833,12 +2833,12 @@ func init() {
 	proto.RegisterType((*SimpleSignTx)(nil), "SimpleSignTx")
 	proto.RegisterType((*TxRequest)(nil), "TxRequest")
 	proto.RegisterType((*TxAck)(nil), "TxAck")
-	proto.RegisterType((*EthereumSignTx)(nil), "EthereumSignTx")
-	proto.RegisterType((*EthereumTxRequest)(nil), "EthereumTxRequest")
-	proto.RegisterType((*EthereumTxAck)(nil), "EthereumTxAck")
-	proto.RegisterType((*EthereumSignMessage)(nil), "EthereumSignMessage")
-	proto.RegisterType((*EthereumVerifyMessage)(nil), "EthereumVerifyMessage")
-	proto.RegisterType((*EthereumMessageSignature)(nil), "EthereumMessageSignature")
+	proto.RegisterType((*SagecitySignTx)(nil), "SagecitySignTx")
+	proto.RegisterType((*SagecityTxRequest)(nil), "SagecityTxRequest")
+	proto.RegisterType((*SagecityTxAck)(nil), "SagecityTxAck")
+	proto.RegisterType((*SagecitySignMessage)(nil), "SagecitySignMessage")
+	proto.RegisterType((*SagecityVerifyMessage)(nil), "SagecityVerifyMessage")
+	proto.RegisterType((*SagecityMessageSignature)(nil), "SagecityMessageSignature")
 	proto.RegisterType((*SignIdentity)(nil), "SignIdentity")
 	proto.RegisterType((*SignedIdentity)(nil), "SignedIdentity")
 	proto.RegisterType((*GetECDHSessionKey)(nil), "GetECDHSessionKey")

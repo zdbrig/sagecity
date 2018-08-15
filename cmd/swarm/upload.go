@@ -1,18 +1,18 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2016 The sagecity Authors
+// This file is part of sagecity.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// sagecity is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// sagecity is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with sagecity. If not, see <http://www.gnu.org/licenses/>.
 
 // Command bzzup uploads files to the swarm HTTP API.
 package main
@@ -30,8 +30,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	swarm "github.com/ethereum/go-ethereum/swarm/api/client"
+	"github.com/zdbrig/sagecity/cmd/utils"
+	swarm "github.com/zdbrig/sagecity/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

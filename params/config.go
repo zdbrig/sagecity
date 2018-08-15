@@ -1,18 +1,18 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2016 The sagecity Authors
+// This file is part of the sagecity library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The sagecity library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The sagecity library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the sagecity library. If not, see <http://www.gnu.org/licenses/>.
 
 package params
 
@@ -20,56 +20,57 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
+	"github.com/zdbrig/sagecity/common"
 )
 
 var (
-	MainnetGenesisHash = common.HexToHash("0x612e80cb54163cf158b4dc1500e900faf01a024d65271d7a14d1d4c77c351317") // Mainnet genesis hash to enforce below configs on
+
+	MainnetGenesisHash = common.HexToHash("0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3") // Mainnet genesis hash to enforce below configs on
 	TestnetGenesisHash = common.HexToHash("0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d") // Testnet genesis hash to enforce below configs on
 )
 
 var (
 	// MainnetChainConfig is the chain parameters to run a node on the main network.
 	MainnetChainConfig = &ChainConfig{
-		ChainId:        big.NewInt(1000),
+		ChainId:        big.NewInt(3856),
 		HomesteadBlock: big.NewInt(0),
-		DAOForkBlock:   big.NewInt(0),
+		DAOForkBlock:   big.NewInt(2920000),
 		DAOForkSupport: true,
-		EIP150Block:    big.NewInt(2463000),
-		EIP150Hash:     common.HexToHash("0x612e80cb54163cf158b4dc1500e900faf01a024d65271d7a14d1d4c77c351317"),
+		EIP150Block:    big.NewInt(0),
+		EIP150Hash:     common.HexToHash("0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0"),
 		EIP155Block:    big.NewInt(0),
 		EIP158Block:    big.NewInt(0),
-		ByzantiumBlock: big.NewInt(0),
+		ByzantiumBlock: big.NewInt(8370000),
 
 		Ethash: new(EthashConfig),
 	}
 
 	// TestnetChainConfig contains the chain parameters to run a node on the Ropsten test network.
 	TestnetChainConfig = &ChainConfig{
-		ChainId:        big.NewInt(1000),
+		ChainId:        big.NewInt(3),
 		HomesteadBlock: big.NewInt(0),
 		DAOForkBlock:   nil,
 		DAOForkSupport: true,
 		EIP150Block:    big.NewInt(0),
-		EIP150Hash:     common.HexToHash("0x612e80cb54163cf158b4dc1500e900faf01a024d65271d7a14d1d4c77c351317"),
-		EIP155Block:    big.NewInt(0),
-		EIP158Block:    big.NewInt(0),
-		ByzantiumBlock: big.NewInt(0),
+		EIP150Hash:     common.HexToHash("0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d"),
+		EIP155Block:    big.NewInt(10),
+		EIP158Block:    big.NewInt(10),
+		ByzantiumBlock: big.NewInt(1700000),
 
 		Ethash: new(EthashConfig),
 	}
 
 	// RinkebyChainConfig contains the chain parameters to run a node on the Rinkeby test network.
 	RinkebyChainConfig = &ChainConfig{
-		ChainId:        big.NewInt(1000),
-		HomesteadBlock: big.NewInt(0),
+		ChainId:        big.NewInt(4),
+		HomesteadBlock: big.NewInt(1),
 		DAOForkBlock:   nil,
 		DAOForkSupport: true,
-		EIP150Block:    big.NewInt(0),
-		EIP150Hash:     common.HexToHash("0x612e80cb54163cf158b4dc1500e900faf01a024d65271d7a14d1d4c77c351317"),
-		EIP155Block:    big.NewInt(0),
-		EIP158Block:    big.NewInt(0),
-		ByzantiumBlock: big.NewInt(0),
+		EIP150Block:    big.NewInt(2),
+		EIP150Hash:     common.HexToHash("0x9b095b36c15eaf13044373aef8ee0bd3a382a5abb92e402afa44b8249c3a90e9"),
+		EIP155Block:    big.NewInt(3),
+		EIP158Block:    big.NewInt(3),
+		ByzantiumBlock: big.NewInt(1035301),
 
 		Clique: &CliqueConfig{
 			Period: 15,
@@ -78,7 +79,7 @@ var (
 	}
 
 	// AllProtocolChanges contains every protocol change (EIPs)
-	// introduced and accepted by the Ethereum core developers.
+	// introduced and accepted by the Sagecity core developers.
 	//
 	// This configuration is intentionally not using keyed fields.
 	// This configuration must *always* have all forks enabled, which
@@ -103,7 +104,7 @@ type ChainConfig struct {
 	DAOForkBlock   *big.Int `json:"daoForkBlock,omitempty"`   // TheDAO hard-fork switch block (nil = no fork)
 	DAOForkSupport bool     `json:"daoForkSupport,omitempty"` // Whether the nodes supports or opposes the DAO hard-fork
 
-	// EIP150 implements the Gas price changes (https://github.com/ethereum/EIPs/issues/150)
+	// EIP150 implements the Gas price changes (https://github.com/zdbrig/EIPs/issues/150)
 	EIP150Block *big.Int    `json:"eip150Block,omitempty"` // EIP150 HF block (nil = no fork)
 	EIP150Hash  common.Hash `json:"eip150Hash,omitempty"`  // EIP150 HF hash (needed for header only clients as only gas pricing changed)
 

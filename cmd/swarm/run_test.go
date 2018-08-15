@@ -1,18 +1,18 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2016 The sagecity Authors
+// This file is part of sagecity.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// sagecity is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// sagecity is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with sagecity. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -27,12 +27,12 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/internal/cmdtest"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/go-ethereum/swarm"
+	"github.com/zdbrig/sagecity/accounts/keystore"
+	"github.com/zdbrig/sagecity/internal/cmdtest"
+	"github.com/zdbrig/sagecity/node"
+	"github.com/zdbrig/sagecity/p2p"
+	"github.com/zdbrig/sagecity/rpc"
+	"github.com/zdbrig/sagecity/swarm"
 )
 
 func init() {

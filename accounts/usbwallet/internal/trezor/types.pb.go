@@ -42,9 +42,9 @@ It has these top-level messages:
 	GetPublicKey
 	PublicKey
 	GetAddress
-	EthereumGetAddress
+	SagecityGetAddress
 	Address
-	EthereumAddress
+	SagecityAddress
 	WipeDevice
 	LoadDevice
 	ResetDevice
@@ -69,12 +69,12 @@ It has these top-level messages:
 	SimpleSignTx
 	TxRequest
 	TxAck
-	EthereumSignTx
-	EthereumTxRequest
-	EthereumTxAck
-	EthereumSignMessage
-	EthereumVerifyMessage
-	EthereumMessageSignature
+	SagecitySignTx
+	SagecityTxRequest
+	SagecityTxAck
+	SagecitySignMessage
+	SagecityVerifyMessage
+	SagecityMessageSignature
 	SignIdentity
 	SignedIdentity
 	GetECDHSessionKey

@@ -1,34 +1,34 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2016 The sagecity Authors
+// This file is part of the sagecity library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The sagecity library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The sagecity library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the sagecity library. If not, see <http://www.gnu.org/licenses/>.
 
 package ethclient
 
-import "github.com/ethereum/go-ethereum"
+import "github.com/zdbrig/sagecity"
 
-// Verify that Client implements the ethereum interfaces.
+// Verify that Client implements the sagecity interfaces.
 var (
-	_ = ethereum.ChainReader(&Client{})
-	_ = ethereum.TransactionReader(&Client{})
-	_ = ethereum.ChainStateReader(&Client{})
-	_ = ethereum.ChainSyncReader(&Client{})
-	_ = ethereum.ContractCaller(&Client{})
-	_ = ethereum.GasEstimator(&Client{})
-	_ = ethereum.GasPricer(&Client{})
-	_ = ethereum.LogFilterer(&Client{})
-	_ = ethereum.PendingStateReader(&Client{})
-	// _ = ethereum.PendingStateEventer(&Client{})
-	_ = ethereum.PendingContractCaller(&Client{})
+	_ = sagecity.ChainReader(&Client{})
+	_ = sagecity.TransactionReader(&Client{})
+	_ = sagecity.ChainStateReader(&Client{})
+	_ = sagecity.ChainSyncReader(&Client{})
+	_ = sagecity.ContractCaller(&Client{})
+	_ = sagecity.GasEstimator(&Client{})
+	_ = sagecity.GasPricer(&Client{})
+	_ = sagecity.LogFilterer(&Client{})
+	_ = sagecity.PendingStateReader(&Client{})
+	// _ = sagecity.PendingStateEventer(&Client{})
+	_ = sagecity.PendingContractCaller(&Client{})
 )

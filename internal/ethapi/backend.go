@@ -1,43 +1,43 @@
-// Copyright 2015 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2015 The sagecity Authors
+// This file is part of the sagecity library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The sagecity library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The sagecity library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the sagecity library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package ethapi implements the general Ethereum API functions.
+// Package ethapi implements the general Sagecity API functions.
 package ethapi
 
 import (
 	"context"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/zdbrig/sagecity/accounts"
+	"github.com/zdbrig/sagecity/common"
+	"github.com/zdbrig/sagecity/core"
+	"github.com/zdbrig/sagecity/core/state"
+	"github.com/zdbrig/sagecity/core/types"
+	"github.com/zdbrig/sagecity/core/vm"
+	"github.com/zdbrig/sagecity/eth/downloader"
+	"github.com/zdbrig/sagecity/ethdb"
+	"github.com/zdbrig/sagecity/event"
+	"github.com/zdbrig/sagecity/params"
+	"github.com/zdbrig/sagecity/rpc"
 )
 
 // Backend interface provides the common API services (that are provided by
 // both full and light clients) with access to necessary functions.
 type Backend interface {
-	// general Ethereum API
+	// general Sagecity API
 	Downloader() *downloader.Downloader
 	ProtocolVersion() int
 	SuggestPrice(ctx context.Context) (*big.Int, error)
@@ -76,7 +76,7 @@ func GetAPIs(apiBackend Backend) []rpc.API {
 		{
 			Namespace: "eth",
 			Version:   "1.0",
-			Service:   NewPublicEthereumAPI(apiBackend),
+			Service:   NewPublicSagecityAPI(apiBackend),
 			Public:    true,
 		}, {
 			Namespace: "eth",

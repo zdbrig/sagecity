@@ -1,18 +1,18 @@
-// Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2017 The sagecity Authors
+// This file is part of the sagecity library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The sagecity library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The sagecity library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the sagecity library. If not, see <http://www.gnu.org/licenses/>.
 
 // Package clique implements the proof-of-authority consensus engine.
 package clique
@@ -25,20 +25,20 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/misc"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/crypto/sha3"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/zdbrig/sagecity/accounts"
+	"github.com/zdbrig/sagecity/common"
+	"github.com/zdbrig/sagecity/common/hexutil"
+	"github.com/zdbrig/sagecity/consensus"
+	"github.com/zdbrig/sagecity/consensus/misc"
+	"github.com/zdbrig/sagecity/core/state"
+	"github.com/zdbrig/sagecity/core/types"
+	"github.com/zdbrig/sagecity/crypto"
+	"github.com/zdbrig/sagecity/crypto/sha3"
+	"github.com/zdbrig/sagecity/ethdb"
+	"github.com/zdbrig/sagecity/log"
+	"github.com/zdbrig/sagecity/params"
+	"github.com/zdbrig/sagecity/rlp"
+	"github.com/zdbrig/sagecity/rpc"
 	lru "github.com/hashicorp/golang-lru"
 )
 
@@ -162,7 +162,7 @@ func sigHash(header *types.Header) (hash common.Hash) {
 	return hash
 }
 
-// ecrecover extracts the Ethereum account address from a signed header.
+// ecrecover extracts the Sagecity account address from a signed header.
 func ecrecover(header *types.Header, sigcache *lru.ARCCache) (common.Address, error) {
 	// If the signature's already cached, return that
 	hash := header.Hash()
@@ -175,7 +175,7 @@ func ecrecover(header *types.Header, sigcache *lru.ARCCache) (common.Address, er
 	}
 	signature := header.Extra[len(header.Extra)-extraSeal:]
 
-	// Recover the public key and the Ethereum address
+	// Recover the public key and the Sagecity address
 	pubkey, err := crypto.Ecrecover(sigHash(header).Bytes(), signature)
 	if err != nil {
 		return common.Address{}, err
@@ -188,7 +188,7 @@ func ecrecover(header *types.Header, sigcache *lru.ARCCache) (common.Address, er
 }
 
 // Clique is the proof-of-authority consensus engine proposed to support the
-// Ethereum testnet following the Ropsten attacks.
+// Sagecity testnet following the Ropsten attacks.
 type Clique struct {
 	config *params.CliqueConfig // Consensus engine configuration parameters
 	db     ethdb.Database       // Database to store and retrieve snapshot checkpoints
@@ -198,7 +198,7 @@ type Clique struct {
 
 	proposals map[common.Address]bool // Current list of proposals we are pushing
 
-	signer common.Address // Ethereum address of the signing key
+	signer common.Address // Sagecity address of the signing key
 	signFn SignerFn       // Signer function to authorize hashes with
 	lock   sync.RWMutex   // Protects the signer fields
 }
@@ -227,7 +227,7 @@ func New(config *params.CliqueConfig, db ethdb.Database) *Clique {
 	}
 }
 
-// Author implements consensus.Engine, returning the Ethereum address recovered
+// Author implements consensus.Engine, returning the Sagecity address recovered
 // from the signature in the header's extra-data section.
 func (c *Clique) Author(header *types.Header) (common.Address, error) {
 	return ecrecover(header, c.signatures)

@@ -1,20 +1,20 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2016 The sagecity Authors
+// This file is part of the sagecity library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The sagecity library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The sagecity library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the sagecity library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package les implements the Light Ethereum Subprotocol.
+// Package les implements the Light Sagecity Subprotocol.
 package les
 
 import (
@@ -22,29 +22,29 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/filters"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/light"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discv5"
-	"github.com/ethereum/go-ethereum/params"
-	rpc "github.com/ethereum/go-ethereum/rpc"
+	"github.com/zdbrig/sagecity/accounts"
+	"github.com/zdbrig/sagecity/common"
+	"github.com/zdbrig/sagecity/common/hexutil"
+	"github.com/zdbrig/sagecity/consensus"
+	"github.com/zdbrig/sagecity/core"
+	"github.com/zdbrig/sagecity/core/types"
+	"github.com/zdbrig/sagecity/eth"
+	"github.com/zdbrig/sagecity/eth/downloader"
+	"github.com/zdbrig/sagecity/eth/filters"
+	"github.com/zdbrig/sagecity/eth/gasprice"
+	"github.com/zdbrig/sagecity/ethdb"
+	"github.com/zdbrig/sagecity/event"
+	"github.com/zdbrig/sagecity/internal/ethapi"
+	"github.com/zdbrig/sagecity/light"
+	"github.com/zdbrig/sagecity/log"
+	"github.com/zdbrig/sagecity/node"
+	"github.com/zdbrig/sagecity/p2p"
+	"github.com/zdbrig/sagecity/p2p/discv5"
+	"github.com/zdbrig/sagecity/params"
+	rpc "github.com/zdbrig/sagecity/rpc"
 )
 
-type LightEthereum struct {
+type LightSagecity struct {
 	odr         *LesOdr
 	relay       *LesTxRelay
 	chainConfig *params.ChainConfig
@@ -73,7 +73,7 @@ type LightEthereum struct {
 	wg sync.WaitGroup
 }
 
-func New(ctx *node.ServiceContext, config *eth.Config) (*LightEthereum, error) {
+func New(ctx *node.ServiceContext, config *eth.Config) (*LightSagecity, error) {
 	chainDb, err := eth.CreateDB(ctx, config, "lightchaindata")
 	if err != nil {
 		return nil, err
@@ -87,7 +87,7 @@ func New(ctx *node.ServiceContext, config *eth.Config) (*LightEthereum, error) {
 	peers := newPeerSet()
 	quitSync := make(chan struct{})
 
-	eth := &LightEthereum{
+	eth := &LightSagecity{
 		chainConfig:    chainConfig,
 		chainDb:        chainDb,
 		eventMux:       ctx.EventMux,
@@ -152,9 +152,9 @@ func (s *LightDummyAPI) Mining() bool {
 	return false
 }
 
-// APIs returns the collection of RPC services the ethereum package offers.
+// APIs returns the collection of RPC services the sagecity package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *LightEthereum) APIs() []rpc.API {
+func (s *LightSagecity) APIs() []rpc.API {
 	return append(ethapi.GetAPIs(s.ApiBackend), []rpc.API{
 		{
 			Namespace: "eth",
@@ -180,26 +180,26 @@ func (s *LightEthereum) APIs() []rpc.API {
 	}...)
 }
 
-func (s *LightEthereum) ResetWithGenesisBlock(gb *types.Block) {
+func (s *LightSagecity) ResetWithGenesisBlock(gb *types.Block) {
 	s.blockchain.ResetWithGenesisBlock(gb)
 }
 
-func (s *LightEthereum) BlockChain() *light.LightChain      { return s.blockchain }
-func (s *LightEthereum) TxPool() *light.TxPool              { return s.txPool }
-func (s *LightEthereum) Engine() consensus.Engine           { return s.engine }
-func (s *LightEthereum) LesVersion() int                    { return int(s.protocolManager.SubProtocols[0].Version) }
-func (s *LightEthereum) Downloader() *downloader.Downloader { return s.protocolManager.downloader }
-func (s *LightEthereum) EventMux() *event.TypeMux           { return s.eventMux }
+func (s *LightSagecity) BlockChain() *light.LightChain      { return s.blockchain }
+func (s *LightSagecity) TxPool() *light.TxPool              { return s.txPool }
+func (s *LightSagecity) Engine() consensus.Engine           { return s.engine }
+func (s *LightSagecity) LesVersion() int                    { return int(s.protocolManager.SubProtocols[0].Version) }
+func (s *LightSagecity) Downloader() *downloader.Downloader { return s.protocolManager.downloader }
+func (s *LightSagecity) EventMux() *event.TypeMux           { return s.eventMux }
 
 // Protocols implements node.Service, returning all the currently configured
 // network protocols to start.
-func (s *LightEthereum) Protocols() []p2p.Protocol {
+func (s *LightSagecity) Protocols() []p2p.Protocol {
 	return s.protocolManager.SubProtocols
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Ethereum protocol implementation.
-func (s *LightEthereum) Start(srvr *p2p.Server) error {
+// Sagecity protocol implementation.
+func (s *LightSagecity) Start(srvr *p2p.Server) error {
 	log.Warn("Light client mode is an experimental feature")
 	s.netRPCService = ethapi.NewPublicNetAPI(srvr, s.networkId)
 	s.serverPool.start(srvr, lesTopic(s.blockchain.Genesis().Hash()))
@@ -208,8 +208,8 @@ func (s *LightEthereum) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ethereum protocol.
-func (s *LightEthereum) Stop() error {
+// Sagecity protocol.
+func (s *LightSagecity) Stop() error {
 	s.odr.Stop()
 	s.blockchain.Stop()
 	s.protocolManager.Stop()

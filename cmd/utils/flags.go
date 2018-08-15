@@ -1,20 +1,20 @@
-// Copyright 2015 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2015 The sagecity Authors
+// This file is part of sagecity.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// sagecity is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// sagecity is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with sagecity. If not, see <http://www.gnu.org/licenses/>.
 
-// Package utils contains internal helper functions for go-ethereum commands.
+// Package utils contains internal helper functions for sagecity commands.
 package utils
 
 import (
@@ -28,32 +28,32 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/ethstats"
-	"github.com/ethereum/go-ethereum/les"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/discv5"
-	"github.com/ethereum/go-ethereum/p2p/nat"
-	"github.com/ethereum/go-ethereum/p2p/netutil"
-	"github.com/ethereum/go-ethereum/params"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv5"
+	"github.com/zdbrig/sagecity/accounts"
+	"github.com/zdbrig/sagecity/accounts/keystore"
+	"github.com/zdbrig/sagecity/common"
+	"github.com/zdbrig/sagecity/consensus"
+	"github.com/zdbrig/sagecity/consensus/clique"
+	"github.com/zdbrig/sagecity/consensus/ethash"
+	"github.com/zdbrig/sagecity/core"
+	"github.com/zdbrig/sagecity/core/state"
+	"github.com/zdbrig/sagecity/core/vm"
+	"github.com/zdbrig/sagecity/crypto"
+	"github.com/zdbrig/sagecity/eth"
+	"github.com/zdbrig/sagecity/eth/downloader"
+	"github.com/zdbrig/sagecity/eth/gasprice"
+	"github.com/zdbrig/sagecity/ethdb"
+	"github.com/zdbrig/sagecity/ethstats"
+	"github.com/zdbrig/sagecity/les"
+	"github.com/zdbrig/sagecity/log"
+	"github.com/zdbrig/sagecity/metrics"
+	"github.com/zdbrig/sagecity/node"
+	"github.com/zdbrig/sagecity/p2p"
+	"github.com/zdbrig/sagecity/p2p/discover"
+	"github.com/zdbrig/sagecity/p2p/discv5"
+	"github.com/zdbrig/sagecity/p2p/nat"
+	"github.com/zdbrig/sagecity/p2p/netutil"
+	"github.com/zdbrig/sagecity/params"
+	whisper "github.com/zdbrig/sagecity/whisper/whisperv5"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -818,7 +818,7 @@ func SetNodeConfig(ctx *cli.Context, cfg *node.Config) {
 	case ctx.GlobalIsSet(DataDirFlag.Name):
 		cfg.DataDir = ctx.GlobalString(DataDirFlag.Name)
 	case ctx.GlobalBool(DevModeFlag.Name):
-		cfg.DataDir = filepath.Join(os.TempDir(), "ethereum_dev_mode")
+		cfg.DataDir = filepath.Join(os.TempDir(), "sagecity_dev_mode")
 	case ctx.GlobalBool(TestnetFlag.Name):
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "testnet")
 	case ctx.GlobalBool(RinkebyFlag.Name):
@@ -999,7 +999,7 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *eth.Config) {
 	}
 }
 
-// RegisterEthService adds an Ethereum client to the stack.
+// RegisterEthService adds an Sagecity client to the stack.
 func RegisterEthService(stack *node.Node, cfg *eth.Config) {
 	var err error
 	if cfg.SyncMode == downloader.LightSync {
@@ -1017,7 +1017,7 @@ func RegisterEthService(stack *node.Node, cfg *eth.Config) {
 		})
 	}
 	if err != nil {
-		Fatalf("Failed to register the Ethereum service: %v", err)
+		Fatalf("Failed to register the Sagecity service: %v", err)
 	}
 }
 
@@ -1030,20 +1030,20 @@ func RegisterShhService(stack *node.Node, cfg *whisper.Config) {
 	}
 }
 
-// RegisterEthStatsService configures the Ethereum Stats daemon and adds it to
+// RegisterEthStatsService configures the Sagecity Stats daemon and adds it to
 // th egiven node.
 func RegisterEthStatsService(stack *node.Node, url string) {
 	if err := stack.Register(func(ctx *node.ServiceContext) (node.Service, error) {
 		// Retrieve both eth and les services
-		var ethServ *eth.Ethereum
+		var ethServ *eth.Sagecity
 		ctx.Service(&ethServ)
 
-		var lesServ *les.LightEthereum
+		var lesServ *les.LightSagecity
 		ctx.Service(&lesServ)
 
 		return ethstats.New(url, ethServ, lesServ)
 	}); err != nil {
-		Fatalf("Failed to register the Ethereum Stats service: %v", err)
+		Fatalf("Failed to register the Sagecity Stats service: %v", err)
 	}
 }
 
