@@ -27,7 +27,7 @@ import (
 )
 
 var (
-	mainnetChainConfig = params.ChainConfig{
+	sagecitynetChainConfig = params.ChainConfig{
 		ChainId:        big.NewInt(1),
 		HomesteadBlock: big.NewInt(1150000),
 		DAOForkBlock:   big.NewInt(1920000),
@@ -70,9 +70,9 @@ func TestDifficulty(t *testing.T) {
 	})
 
 	dt.config("Frontier", *params.TestnetChainConfig)
-	dt.config("MainNetwork", mainnetChainConfig)
-	dt.config("CustomMainNetwork", mainnetChainConfig)
-	dt.config("difficulty.json", mainnetChainConfig)
+	dt.config("MainNetwork", sagecitynetChainConfig)
+	dt.config("CustomMainNetwork", sagecitynetChainConfig)
+	dt.config("difficulty.json", sagecitynetChainConfig)
 
 	dt.walk(t, difficultyTestDir, func(t *testing.T, name string, test *DifficultyTest) {
 		cfg := dt.findConfig(name)

@@ -207,7 +207,7 @@ func (pm *ProtocolManager) synchronise(peer *peer) {
 		// essential in star-topology networks where a gateway node needs to notify
 		// all its out-of-date peers of the availability of a new block. This failure
 		// scenario will most often crop up in private and hackathon networks with
-		// degenerate connectivity, but it should be healthy for the mainnet too to
+		// degenerate connectivity, but it should be healthy for the sagecitynet too to
 		// more reliably update peers or the local TD state.
 		go pm.BroadcastBlock(head, false)
 	}

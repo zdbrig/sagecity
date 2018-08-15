@@ -16,9 +16,9 @@
 
 package params
 
-// MainnetBootnodes are the enode URLs of the P2P bootstrap nodes running on
+// SagecitynetBootnodes are the enode URLs of the P2P bootstrap nodes running on
 // the main Ethereum network.
-var MainnetBootnodes = []string{
+var SagecitynetBootnodes = []string{
 	// Ethereum Foundation Go Bootnodes
 	"enode://f32f6097c5cc3881b7ba4759dd82b1c5c0edc443a446886b820ccf90f0f1e16471c45b24f20d82cc3779965344c824fe000f0b3da9f983d403b07d1c4ec55df2@45.76.34.21:60888", // Amsterdam
 	"enode://35f02e35eaccc114a139f08df1d1a52ea887c32804b4feefc521cd109fa81c9a17c77fadf48eba09f3439144287ffc9e2ac314a13fc389a05bbf72efc545c96a@45.63.57.21:60888",  // Los Angeles

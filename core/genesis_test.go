@@ -31,8 +31,8 @@ import (
 
 func TestDefaultGenesisBlock(t *testing.T) {
 	block, _ := DefaultGenesisBlock().ToBlock()
-	if block.Hash() != params.MainnetGenesisHash {
-		t.Errorf("wrong mainnet genesis hash, got %v, want %v", block.Hash(), params.MainnetGenesisHash)
+	if block.Hash() != params.SagecitynetGenesisHash {
+		t.Errorf("wrong sagecitynet genesis hash, got %v, want %v", block.Hash(), params.SagecitynetGenesisHash)
 	}
 	block, _ = DefaultTestnetGenesisBlock().ToBlock()
 	if block.Hash() != params.TestnetGenesisHash {
@@ -72,17 +72,17 @@ func TestSetupGenesis(t *testing.T) {
 			fn: func(db ethdb.Database) (*params.ChainConfig, common.Hash, error) {
 				return SetupGenesisBlock(db, nil)
 			},
-			wantHash:   params.MainnetGenesisHash,
-			wantConfig: params.MainnetChainConfig,
+			wantHash:   params.SagecitynetGenesisHash,
+			wantConfig: params.SagecitynetChainConfig,
 		},
 		{
-			name: "mainnet block in DB, genesis == nil",
+			name: "sagecitynet block in DB, genesis == nil",
 			fn: func(db ethdb.Database) (*params.ChainConfig, common.Hash, error) {
 				DefaultGenesisBlock().MustCommit(db)
 				return SetupGenesisBlock(db, nil)
 			},
-			wantHash:   params.MainnetGenesisHash,
-			wantConfig: params.MainnetChainConfig,
+			wantHash:   params.SagecitynetGenesisHash,
+			wantConfig: params.SagecitynetChainConfig,
 		},
 		{
 			name: "custom block in DB, genesis == nil",

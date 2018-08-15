@@ -57,7 +57,7 @@ type NodeConfig struct {
 	SagecityNetworkID int64 // uint64 in truth, but Java can't handle that...
 
 	// SagecityGenesis is the genesis JSON to use to seed the blockchain with. An
-	// empty genesis state is equivalent to using the mainnet's state.
+	// empty genesis state is equivalent to using the sagecitynet's state.
 	SagecityGenesis string
 
 	// SagecityDatabaseCache is the system memory in MB to allocate for database caching.
@@ -130,7 +130,7 @@ func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 
 	var genesis *core.Genesis
 	if config.SagecityGenesis != "" {
-		// Parse the user supplied genesis spec if not mainnet
+		// Parse the user supplied genesis spec if not sagecitynet
 		genesis = new(core.Genesis)
 		if err := json.Unmarshal([]byte(config.SagecityGenesis), genesis); err != nil {
 			return nil, fmt.Errorf("invalid genesis spec: %v", err)

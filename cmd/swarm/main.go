@@ -108,7 +108,7 @@ var (
 	}
 	EnsAddrFlag = cli.StringFlag{
 		Name:  "ens-addr",
-		Usage: "ENS contract address (default is detected as testnet or mainnet using --ens-api)",
+		Usage: "ENS contract address (default is detected as testnet or sagecitynet using --ens-api)",
 	}
 	SwarmApiFlag = cli.StringFlag{
 		Name:  "bzzapi",
@@ -418,7 +418,7 @@ func bzzd(ctx *cli.Context) error {
 
 // detectEnsAddr determines the ENS contract address by getting both the
 // version and genesis hash using the client and matching them to either
-// mainnet or testnet addresses
+// sagecitynet or testnet addresses
 func detectEnsAddr(client *rpc.Client) (common.Address, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -435,8 +435,8 @@ func detectEnsAddr(client *rpc.Client) (common.Address, error) {
 
 	switch {
 
-	case version == "1" && block.Hash() == params.MainnetGenesisHash:
-		log.Info("using Mainnet ENS contract address", "addr", ens.MainNetAddress)
+	case version == "1" && block.Hash() == params.SagecitynetGenesisHash:
+		log.Info("using Sagecitynet ENS contract address", "addr", ens.MainNetAddress)
 		return ens.MainNetAddress, nil
 
 	case version == "3" && block.Hash() == params.TestnetGenesisHash:

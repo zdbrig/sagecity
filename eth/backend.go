@@ -333,7 +333,7 @@ func (s *Sagecity) StartMining(local bool) error {
 	}
 	if local {
 		// If local (CPU) mining is started, we can disable the transaction rejection
-		// mechanism introduced to speed sync times. CPU mining on mainnet is ludicrous
+		// mechanism introduced to speed sync times. CPU mining on sagecitynet is ludicrous
 		// so noone will ever hit this path, whereas marking sync done on CPU mining
 		// will ensure that private networks work in single miner mode too.
 		atomic.StoreUint32(&s.protocolManager.acceptTxs, 1)
