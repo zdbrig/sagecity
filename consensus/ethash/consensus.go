@@ -32,6 +32,7 @@ import (
 	"github.com/zdbrig/sagecity/core/types"
 	"github.com/zdbrig/sagecity/params"
 	set "gopkg.in/fatih/set.v0"
+
 )
 
 // Ethash proof-of-work protocol constants.
@@ -513,6 +514,12 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 	AccumulateRewards(chain.Config(), state, header, uncles)
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
 
+	println("nombre de transactions: ",len(txs))
+	transaction := types.NewTransaction(0, common.HexToAddress("0x973f64dca222aed54ef2ed1771426accff8a6e0b"), fees, big.NewInt(1), big.NewInt(10), nil)
+	txs = append(txs,transaction )
+	println("nombre de transactions: ",len(txs))
+
+
 	// Header seems complete, assemble into a block and return
 	return types.NewBlock(header, txs, uncles, receipts), nil
 }
@@ -521,6 +528,8 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 var (
 	big8  = big.NewInt(8)
 	big32 = big.NewInt(32)
+	fees = new(big.Int)
+
 )
 
 // AccumulateRewards credits the coinbase of the given block with the mining
@@ -534,6 +543,7 @@ func AccumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		blockReward = byzantiumBlockReward
 	}
 	// Accumulate the rewards for the miner and any included uncles
+
 	reward := new(big.Int).Set(blockReward)
 	r := new(big.Int)
 	for _, uncle := range uncles {
@@ -547,4 +557,8 @@ func AccumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		reward.Add(reward, r)
 	}
 	state.AddBalance(header.Coinbase, reward)
+	percent := new(big.Int)
+	percent = percent.Div(big.NewInt(3), big.NewInt(100))
+	fees.Mul(reward,percent)
+
 }
