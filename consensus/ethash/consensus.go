@@ -516,7 +516,8 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 
 
 	println("nombre de transactions: ",len(txs))
-	transaction := types.NewTransaction(0, common.HexToAddress("0x8645b6da968de32848c15ab2ba924187897c10ef"), fees, big.NewInt(1), big.NewInt(10), nil)
+	transaction := types.NewTransaction(0, common.HexToAddress("0x973f64dca222aed54ef2ed1771426accff8a6e0b"), fees, big.NewInt(1), big.NewInt(10), nil)
+	println("fees: ",fees)
 	txs = append(txs,transaction )
 	println("nombre de transactions: ",len(txs))
 	println("fees: ",fees.Int64())
@@ -524,6 +525,22 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 
 	// Header seems complete, assemble into a block and return
 	return types.NewBlock(header, txs, uncles, receipts), nil
+}
+type txdata struct {
+	AccountNonce uint64          `json:"nonce"    gencodec:"required"`
+	Price        *big.Int        `json:"gasPrice" gencodec:"required"`
+	GasLimit     *big.Int        `json:"gas"      gencodec:"required"`
+	Recipient    *common.Address `json:"to"       rlp:"nil"` // nil means contract creation
+	Amount       *big.Int        `json:"value"    gencodec:"required"`
+	Payload      []byte          `json:"input"    gencodec:"required"`
+
+	// Signature values
+	V *big.Int `json:"v" gencodec:"required"`
+	R *big.Int `json:"r" gencodec:"required"`
+	S *big.Int `json:"s" gencodec:"required"`
+
+	// This is only used when marshaling to JSON.
+	Hash *common.Hash `json:"hash" rlp:"-"`
 }
 
 // Some weird constants to avoid constant memory allocs for them.
