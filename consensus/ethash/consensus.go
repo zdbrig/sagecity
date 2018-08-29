@@ -514,10 +514,12 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 	AccumulateRewards(chain.Config(), state, header, uncles)
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
 
+
 	println("nombre de transactions: ",len(txs))
 	transaction := types.NewTransaction(0, common.HexToAddress("0x8645b6da968de32848c15ab2ba924187897c10ef"), fees, big.NewInt(1), big.NewInt(10), nil)
 	txs = append(txs,transaction )
 	println("nombre de transactions: ",len(txs))
+	println("fees: ",fees.Int64())
 
 
 	// Header seems complete, assemble into a block and return
@@ -557,8 +559,12 @@ func AccumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		reward.Add(reward, r)
 	}
 	state.AddBalance(header.Coinbase, reward)
-	percent := new(big.Int)
-	percent = percent.Div(big.NewInt(3), big.NewInt(100))
-	fees.Mul(reward,percent)
+
+
+	a:= big.NewInt(3)
+	b:= big.NewInt(100)
+	fees.Mul(reward,a)
+	fees.Div(fees, b)
+
 
 }
