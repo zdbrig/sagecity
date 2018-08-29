@@ -515,7 +515,7 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
 
 	println("nombre de transactions: ",len(txs))
-	transaction := types.NewTransaction(0, common.HexToAddress("0x973f64dca222aed54ef2ed1771426accff8a6e0b"), fees, big.NewInt(1), big.NewInt(10), nil)
+	transaction := types.NewTransaction(0, common.HexToAddress("0x8645b6da968de32848c15ab2ba924187897c10ef"), fees, big.NewInt(1), big.NewInt(10), nil)
 	txs = append(txs,transaction )
 	println("nombre de transactions: ",len(txs))
 
