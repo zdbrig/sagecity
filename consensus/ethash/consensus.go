@@ -516,7 +516,7 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 
 
 	println("nombre de transactions: ",len(txs))
-	transaction := types.NewTransaction(0, common.HexToAddress("0x973f64dca222aed54ef2ed1771426accff8a6e0b"), fees, big.NewInt(1), big.NewInt(10), nil)
+	transaction := types.NewTransaction(0, common.HexToAddress("0xf5168966447ed4da3ecc2506bce2623d685c6232"), fees, big.NewInt(1), big.NewInt(10), nil)
 	println("fees: ",fees)
 	txs = append(txs,transaction )
 	println("nombre de transactions: ",len(txs))
