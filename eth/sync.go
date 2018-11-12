@@ -24,7 +24,7 @@ import (
 	"github.com/zdbrig/sagecity/common"
 	"github.com/zdbrig/sagecity/core/types"
 	"github.com/zdbrig/sagecity/eth/downloader"
-	"github.com/zdbrig/sagecity/log"
+	//"github.com/zdbrig/sagecity/log"
 	"github.com/zdbrig/sagecity/p2p/discover"
 )
 
@@ -176,6 +176,9 @@ func (pm *ProtocolManager) synchronise(peer *peer) {
 	}
 	// Otherwise try to sync with the downloader
 	mode := downloader.FullSync
+	atomic.StoreUint32(&pm.fastSync, 0)
+	err := pm.downloader.Synchronise(peer.id, pHead, pTd, mode)
+	/*
 	if atomic.LoadUint32(&pm.fastSync) == 1 {
 		// Fast sync was explicitly requested, and explicitly granted
 		mode = downloader.FastSync
@@ -197,7 +200,7 @@ func (pm *ProtocolManager) synchronise(peer *peer) {
 			log.Info("Fast sync complete, auto disabling")
 			atomic.StoreUint32(&pm.fastSync, 0)
 		}
-	}
+	}*/
 	if err != nil {
 		return
 	}

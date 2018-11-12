@@ -180,7 +180,7 @@ func doInstall(cmdline []string) {
 		log.Println("You have Go version", runtime.Version())
 		log.Println("sagecity requires at least Go version 1.7 and cannot")
 		log.Println("be compiled with an earlier version. Please upgrade your Go installation.")
-		os.Exit(1)
+		//os.Exit(1)
 	}
 	// Compile packages given as arguments, or everything if there are no arguments.
 	packages := []string{"./..."}
